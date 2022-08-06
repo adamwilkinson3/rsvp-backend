@@ -21,22 +21,25 @@ const Users_1 = require("./Entities/Users");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "mysql",
-        database: "rsvp",
-        username: "root",
-        password: "12qwas!@QWAS",
+        database: "heroku_e49a0943d1661ee",
+        host: "us-cdbr-east-06.cleardb.net",
+        username: "b764a6f2e46cde",
+        password: "34943882",
         logging: true,
         synchronize: false,
         entities: [Users_1.Users, Users_1.Attendance]
     });
     const app = (0, express_1.default)();
-    app.use((0, cors_1.default)());
+    app.use((0, cors_1.default)({
+        origin: "*"
+    }));
     app.use(express_1.default.json());
     app.use("/graphql", (0, express_graphql_1.graphqlHTTP)({
         schema: Schema_1.schema,
         graphiql: true
     }));
-    app.listen(3001, () => {
-        console.log("SERVER RUNNING ON PORT 3001");
+    app.listen(process.env.PORT || 3001, () => {
+        console.log("SERVER RUNNING");
     });
 });
 main().catch((err) => {

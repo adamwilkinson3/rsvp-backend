@@ -8,16 +8,20 @@ import { Users, Attendance } from './Entities/Users'
 const main = async () => {
     await createConnection({
         type: "mysql",
-        database: "rsvp",
-        username: "root",
-        password: "12qwas!@QWAS",
+        database: "heroku_e49a0943d1661ee",
+        host: "us-cdbr-east-06.cleardb.net",
+        username: "b764a6f2e46cde",
+        password: "34943882",
         logging: true,
         synchronize: false,
         entities: [Users, Attendance]
     })
 
+
     const app = express()
-    app.use(cors())
+    app.use(cors({
+        origin: "*"
+    }))
     app.use(express.json())
     app.use("/graphql", graphqlHTTP({
         schema,
@@ -25,8 +29,8 @@ const main = async () => {
     }))
 
     
-    app.listen(3001, () => {
-        console.log("SERVER RUNNING ON PORT 3001")
+    app.listen(process.env.PORT || 3001, () => {
+        console.log("SERVER RUNNING")
     })
 
 }
