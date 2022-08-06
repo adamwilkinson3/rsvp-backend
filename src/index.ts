@@ -17,23 +17,22 @@ const main = async () => {
         entities: [Users, Attendance]
     })
 
+    const corsOptions ={
+        origin: '*', 
+        credentials: true,
+        optionSuccessStatus: 200,
+     }
 
     const app = express()
-    app.use(cors({
-        origin: "*"
-    }))
+
+    app.use(cors(corsOptions))
+
     app.use(express.json())
+
     app.use("/graphql", graphqlHTTP({
         schema,
         graphiql: true
     }))
-
-    app.use((req, res, next) => {
-        res.append('Access-Control-Allow-Origin', ['*']);
-        res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        res.append('Access-Control-Allow-Headers', 'Content-Type');
-        next();
-    });
     
     app.listen(process.env.PORT || 3001, () => {
         console.log("SERVER RUNNING")
