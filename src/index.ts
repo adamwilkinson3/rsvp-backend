@@ -4,6 +4,7 @@ import { schema } from './Schema'
 import cors from 'cors'
 import { createConnection } from 'typeorm'
 import { Users, Attendance } from './Entities/Users'
+require('dotenv').config()
 
 const main = async () => {
     await createConnection({
