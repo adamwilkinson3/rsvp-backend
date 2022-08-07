@@ -4,15 +4,15 @@ import { schema } from './Schema'
 import cors from 'cors'
 import { createConnection } from 'typeorm'
 import { Users, Attendance } from './Entities/Users'
-require('dotenv').config()
+import 'dotenv/config'
 
 const main = async () => {
     await createConnection({
         type: "mysql",
         database: "heroku_e49a0943d1661ee",
         host: "us-cdbr-east-06.cleardb.net",
-        username: "b764a6f2e46cde",
-        password: "34943882",
+        username: process.env.USERNAME_,
+        password: process.env.PASSWORD,
         logging: true,
         synchronize: false,
         entities: [Users, Attendance]
@@ -40,7 +40,6 @@ const main = async () => {
     })
 
 }
-
 main().catch((err) => {
     console.log(err)
 })
