@@ -92,7 +92,7 @@ export const DELETE_USER = {
     async resolve(parent: any, args: any) {
         const token = args.accessToken
         const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
-        if (payload.id !== 1) {
+        if (payload.id !== 4) {
             await Attendance.delete({ ownerId: payload.id })
             await Users.delete(payload.id)
         }
