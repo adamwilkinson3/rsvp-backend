@@ -103,7 +103,7 @@ exports.DELETE_USER = {
         return __awaiter(this, void 0, void 0, function* () {
             const token = args.accessToken;
             const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
-            if (payload.id !== 1) {
+            if (payload.id !== 4) {
                 yield Users_1.Attendance.delete({ ownerId: payload.id });
                 yield Users_1.Users.delete(payload.id);
             }

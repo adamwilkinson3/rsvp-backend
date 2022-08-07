@@ -18,14 +18,14 @@ const Schema_1 = require("./Schema");
 const cors_1 = __importDefault(require("cors"));
 const typeorm_1 = require("typeorm");
 const Users_1 = require("./Entities/Users");
-require('dotenv').config();
+require("dotenv/config");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "mysql",
         database: "heroku_e49a0943d1661ee",
         host: "us-cdbr-east-06.cleardb.net",
-        username: "b764a6f2e46cde",
-        password: "34943882",
+        username: process.env.USERNAME_,
+        password: process.env.PASSWORD,
         logging: true,
         synchronize: false,
         entities: [Users_1.Users, Users_1.Attendance]
